@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toulouseando - Tu primer ciclo, acompañado</title>
+  <meta name="description" content="Plataforma de acompañamiento estudiantil para ingresantes de Toulouse Lautrec. Encuentra tu comunidad, conoce tu sede y descubre consejos para tu primer ciclo.">
+  
+  <!-- Google Fonts: Handwriting & Rounded Display fonts for authentic sketch aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Sketch Doodles in Background -->
+  <div class="bg-doodles" aria-hidden="true">
+    <div class="doodle doodle-cloud doodle-c1">
+      <svg viewBox="0 0 120 70" fill="none"><path d="M20 50 C10 50 5 40 10 30 C12 20 25 15 35 22 C45 10 65 10 75 22 C85 15 100 20 105 32 C115 38 112 50 100 50 Z" stroke="#87c0ea" stroke-width="3" stroke-dasharray="4 2" fill="#e8f4fd" opacity="0.75"/></svg>
+    </div>
+    <div class="doodle doodle-cloud doodle-c2">
+      <svg viewBox="0 0 100 60" fill="none"><path d="M15 42 C8 42 5 33 10 25 C14 16 25 14 32 20 C40 10 58 10 65 20 C75 14 86 19 90 28 C96 34 92 42 82 42 Z" stroke="#cabdf6" stroke-width="2.5" stroke-dasharray="3 2" fill="#f5f0ff" opacity="0.6"/></svg>
+    </div>
+    <div class="doodle doodle-star doodle-s1">
+      <svg viewBox="0 0 40 40"><path d="M20 2 L24 14 L37 15 L27 24 L30 37 L20 29 L10 37 L13 24 L3 15 L16 14 Z" fill="#ffd454" stroke="#e0aa1b" stroke-width="1.5"/></svg>
+    </div>
+    <div class="doodle doodle-heart doodle-h1">
+      <svg viewBox="0 0 40 36"><path d="M20 33 C18 31 4 22 2 13 C0 5 7 0 13 2 C17 3 19 8 20 10 C21 8 23 3 27 2 C33 0 40 5 38 13 C36 22 22 31 20 33 Z" fill="#ff9081" stroke="#e36352" stroke-width="1.5" opacity="0.85"/></svg>
+    </div>
+    <div class="doodle doodle-scribble doodle-sc1">
+      <svg viewBox="0 0 80 40"><path d="M5 25 Q20 5 35 25 T65 25 T75 15" stroke="#f6b840" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+
+  <!-- Browser Frame Wrapper (Replicating the prototype mockup feel) -->
+  <div class="browser-frame">
+    <!-- Window Bar -->
+    <header class="browser-topbar">
+      <div class="window-controls">
+        <span class="control-dot dot-close" title="Cerrar"></span>
+        <span class="control-dot dot-minimize" title="Minimizar"></span>
+        <span class="control-dot dot-expand" title="Expandir"></span>
+      </div>
+
+      <div class="browser-nav-arrows">
+        <button class="arrow-btn" id="navPrevBtn" aria-label="Atrás">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="arrow-btn" id="navNextBtn" aria-label="Adelante">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <!-- URL Pill -->
+      <div class="browser-url-bar">
+        <svg class="url-lock" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <span class="url-text">www.toulouseando.com</span>
+        <button class="star-btn" id="bookmarkBtn" title="Guardar en favoritos" aria-label="Favorito">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </button>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-toggle-frame" id="toggleFrameModeBtn" title="Modo pantalla completa / ventana">
+          <span class="mode-label">Pizarra</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Inner Web Canvas -->
+    <main class="page-content" id="mainContent">
+      
+      <!-- Primary Navigation -->
+      <nav class="main-navbar" aria-label="Navegación principal">
+        <div class="brand-container">
+          <a href="#inicio" class="brand-link" id="brandLogo">
+            <div class="brand-logo-text">
+              <span class="letter c-navy">T</span><span class="letter c-blue">O</span><span class="letter c-green">U</span><span class="letter c-coral">L</span><span class="letter c-yellow">O</span><span class="letter c-navy">U</span><span class="letter c-navy">S</span><span class="letter c-coral">E</span><span class="letter c-yellow">A</span><span class="letter c-navy">N</span><span class="letter c-blue">D</span><span class="letter c-coral">O</span>
+              <span class="sparkle-swash">~</span>
+            </div>
+            <p class="brand-tagline">Tu primer ciclo, acompañado.</p>
+          </a>
+        </div>
+
+        <ul class="nav-links">
+          <li><button type="button" class="nav-item" data-target="foro">Foro</button></li>
+          <li><button type="button" class="nav-item" data-target="sede">Conoce tu sede</button></li>
+          <li><button type="button" class="nav-item" data-target="organiza">Organízate</button></li>
+          <li><button type="button" class="nav-item" data-target="historias">Historias</button></li>
+          <li><button type="button" class="nav-item" data-target="liderazgo">Full liderazgo</button></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="nav-icon-btn search-trigger" id="openSearchBtn" aria-label="Buscar en Toulouseando" title="Buscar temas, guías o sedes">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+          <button class="nav-icon-btn profile-trigger" id="openProfileBtn" aria-label="Perfil del estudiante" title="Mi carnet y perfil">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="inicio">
+        <div class="hero-left">
+          
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>¡Bienvenidos Cachimbos 2026! ✏️</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="crayon-burst c-left" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 40 40"><line x1="30" y1="30" x2="10" y2="10" stroke="#fec84d" stroke-width="4" stroke-linecap="round"/><line x1="30" y1="20" x2="12" y2="20" stroke="#ff8573" stroke-width="3" stroke-linecap="round"/><line x1="25" y1="35" x2="15" y2="25" stroke="#fec84d" stroke-width="3" stroke-linecap="round"/></svg>
+            </span>
+            ¡Tu vida universitaria empieza aquí!
+            <span class="crayon-burst c-right" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 40 40"><line x1="10" y1="30" x2="30" y2="10" stroke="#ff8573" stroke-width="4" stroke-linecap="round"/><line x1="10" y1="20" x2="28" y2="20" stroke="#fec84d" stroke-width="3" stroke-linecap="round"/><line x1="15" y1="35" x2="25" y2="25" stroke="#ff8573" stroke-width="3" stroke-linecap="round"/></svg>
+            </span>
+          </h1>
+
+          <p class="hero-description">
+            Encuentra tu comunidad, conoce tu sede y descubre consejos para vivir tu primer ciclo.
+          </p>
+
+          <div class="hero-cta-wrapper">
+            <button class="cta-primary-btn" id="exploreBtn">
+              <span>Explorar la comunidad</span>
+              <svg class="cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button class="cta-secondary-btn" id="tourQuickBtn">
+              <span>⚡ Guía rápida en 1 min</span>
+            </button>
+          </div>
+
+          <!-- Quick stats / freshman counter -->
+          <div class="hero-mini-badges">
+            <div class="mini-tag">
+              <span class="tag-icon">🎨</span>
+              <span>Comunidad Creativa</span>
+            </div>
+            <div class="mini-tag">
+              <span class="tag-icon">📍</span>
+              <span>3 Sedes Activas</span>
+            </div>
+            <div class="mini-tag">
+              <span class="tag-icon">💡</span>
+              <span>100% Consejos Reales</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-illustration-card">
+            <!-- Sketch Paper Frame for Hero Art -->
+            <div class="sketch-pin-tack" aria-hidden="true">📌</div>
+            <img src="assets/hero-student.jpg" alt="Estudiante sonriente con mochila y cuadernos mirando hacia el campus universitario Toulouse Lautrec" class="hero-img">
+            
+            <!-- Interactive Floating Tips -->
+            <div class="floating-sticker sticker-cachimbo">
+              <span class="sticker-emoji">🎒</span>
+              <div class="sticker-info">
+                <strong>¿Primer día?</strong>
+                <p>No olvides tu bitácora</p>
+              </div>
+            </div>
+
+            <div class="floating-sticker sticker-campus">
+              <span class="sticker-emoji">🏢</span>
+              <div class="sticker-info">
+                <strong>Sede Javier Prado</strong>
+                <p>Cafetería en el 2do piso</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 CATEGORY CARDS SECTION -->
+      <section class="cards-grid-section" id="secciones">
+        <div class="section-sketch-header">
+          <span class="sketch-line-decor"></span>
+          <h2 class="section-title">¿Qué quieres descubrir hoy?</h2>
+          <span class="sketch-line-decor"></span>
+        </div>
+
+        <div class="cards-container">
+          
+          <!-- CARD 1: FORO ESTUDIANTIL -->
+          <article class="sketch-card card-foro" data-card="foro" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Abrir Foro estudiantil">
+            <div class="card-art-box">
+              <div class="art-foro">
+                <!-- Speech Bubbles SVG -->
+                <svg viewBox="0 0 100 80" class="art-svg">
+                  <!-- Blue bubble -->
+                  <path d="M15 45 C15 28 30 15 50 15 C70 15 85 28 85 45 C85 62 70 72 50 72 C42 72 35 70 29 66 L15 72 L18 58 C16 54 15 49 15 45 Z" fill="#4fa3e3" stroke="#25649a" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="36" cy="43" r="3.5" fill="#ffffff"/>
+                  <circle cx="49" cy="43" r="3.5" fill="#ffffff"/>
+                  <circle cx="62" cy="43" r="3.5" fill="#ffffff"/>
+                  <!-- Coral bubble -->
+                  <path d="M52 50 C52 40 62 30 76 30 C90 30 99 40 99 50 C99 60 90 68 76 68 C71 68 66 66 62 64 L52 68 L54 59 C53 56 52 53 52 50 Z" fill="#ff7661" stroke="#c04330" stroke-width="2.2"/>
+                  <circle cx="68" cy="50" r="2.5" fill="#ffffff"/>
+                  <circle cx="76" cy="50" r="2.5" fill="#ffffff"/>
+                  <circle cx="84" cy="50" r="2.5" fill="#ffffff"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <h3 class="card-title">Foro estudiantil</h3>
+              <p class="card-quote">“¿Qué curso te está gustando más?”</p>
+            </div>
+
+            <div class="card-footer-action">
+              <span class="action-hint">Preguntar o responder</span>
+              <span class="card-arrow-pill">→</span>
+            </div>
+          </article>
+
+          <!-- CARD 2: CONOCE TU SEDE -->
+          <article class="sketch-card card-sede" data-card="sede" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Abrir Conoce tu sede">
+            <div class="card-art-box">
+              <div class="art-sede">
+                <!-- Polaroid Photo + Pin -->
+                <div class="mini-polaroid">
+                  <div class="polaroid-pin">📍</div>
+                  <div class="polaroid-photo">
+                    <svg viewBox="0 0 100 65" class="mini-campus-svg">
+                      <rect x="0" y="0" width="100" height="65" fill="#dceeff"/>
+                      <path d="M10 55 L25 20 L55 20 L65 55 Z" fill="#e9d3b5" stroke="#93724c" stroke-width="1.8"/>
+                      <rect x="45" y="15" width="45" height="40" fill="#fdfaf3" stroke="#8c8273" stroke-width="1.8"/>
+                      <!-- Windows -->
+                      <line x1="52" y1="23" x2="65" y2="23" stroke="#4fa3e3" stroke-width="2.5"/>
+                      <line x1="52" y1="31" x2="65" y2="31" stroke="#4fa3e3" stroke-width="2.5"/>
+                      <line x1="72" y1="23" x2="85" y2="23" stroke="#4fa3e3" stroke-width="2.5"/>
+                      <line x1="72" y1="31" x2="85" y2="31" stroke="#4fa3e3" stroke-width="2.5"/>
+                      <!-- Green trees -->
+                      <circle cx="12" cy="48" r="8" fill="#8bc34a" stroke="#558b2f" stroke-width="1.5"/>
+                      <circle cx="22" cy="50" r="6" fill="#9ccc65" stroke="#558b2f" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Mini Route Map -->
+                <div class="mini-map-route">
+                  <svg viewBox="0 0 110 40">
+                    <rect x="2" y="2" width="106" height="36" rx="5" fill="#ffffff" stroke="#c0dbf7" stroke-width="1.5"/>
+                    <rect x="10" y="8" width="18" height="14" fill="#d9f0df" rx="2"/>
+                    <path d="M22 28 Q45 8 70 24 T95 16" fill="none" stroke="#4fa3e3" stroke-width="2.5" stroke-dasharray="4 3"/>
+                    <circle cx="22" cy="28" r="3.5" fill="#e53935"/>
+                    <circle cx="95" cy="16" r="4.5" fill="#4fa3e3" stroke="#ffffff" stroke-width="1.5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <h3 class="card-title">Conoce tu sede</h3>
+              <p class="card-subtitle">Javier Prado, Chorrillos y San Miguel</p>
+            </div>
+
+            <div class="card-footer-action">
+              <span class="action-hint">Ver mapa y talleres</span>
+              <span class="card-arrow-pill">→</span>
+            </div>
+          </article>
+
+          <!-- CARD 3: ORGANÍZATE -->
+          <article class="sketch-card card-organiza" data-card="organiza" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Abrir Organízate">
+            <div class="card-art-box">
+              <div class="art-organiza">
+                <!-- Weekly Grid + Desk Calendar -->
+                <div class="timetable-mockup">
+                  <div class="timetable-days">
+                    <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                  </div>
+                  <div class="timetable-rows">
+                    <div class="t-cell checked">✓</div>
+                    <div class="t-cell"></div>
+                    <div class="t-cell checked">✓</div>
+                    <div class="t-cell"></div>
+                    <div class="t-cell"></div>
+                    <div class="t-cell rest"></div>
+                    <div class="t-cell rest"></div>
+                  </div>
+                  <div class="timetable-rows">
+                    <div class="t-cell"></div>
+                    <div class="t-cell checked">✓</div>
+                    <div class="t-cell"></div>
+                    <div class="t-cell checked">✓</div>
+                    <div class="t-cell"></div>
+                    <div class="t-cell rest"></div>
+                    <div class="t-cell rest"></div>
+                  </div>
+                </div>
+
+                <div class="mini-calendar-badge">
+                  <span class="cal-month">CICLO 1</span>
+                  <span class="cal-days-icon">📅</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <h3 class="card-title">Organízate</h3>
+              <p class="card-subtitle">Horarios, checklist y tips de entrega</p>
+            </div>
+
+            <div class="card-footer-action">
+              <span class="action-hint">Armar mi semana</span>
+              <span class="card-arrow-pill">→</span>
+            </div>
+          </article>
+
+          <!-- CARD 4: HISTORIAS DE ESTUDIANTES -->
+          <article class="sketch-card card-historias" data-card="historias" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Abrir Historias de estudiantes">
+            <div class="card-art-box">
+              <div class="art-historias">
+                <!-- Open Book with Heart SVG -->
+                <svg viewBox="0 0 110 80" class="book-svg">
+                  <!-- Book Pages -->
+                  <path d="M55 25 C45 20 28 20 10 24 L10 65 C28 61 45 61 55 68 C65 61 82 61 100 65 L100 24 C82 20 65 20 55 25 Z" fill="#ffffff" stroke="#7e6bc7" stroke-width="2.5" stroke-linejoin="round"/>
+                  <line x1="55" y1="25" x2="55" y2="68" stroke="#7e6bc7" stroke-width="2"/>
+                  <!-- Page lines left -->
+                  <line x1="20" y1="36" x2="45" y2="36" stroke="#d5cefb" stroke-width="2"/>
+                  <line x1="20" y1="44" x2="45" y2="44" stroke="#d5cefb" stroke-width="2"/>
+                  <line x1="20" y1="52" x2="40" y2="52" stroke="#d5cefb" stroke-width="2"/>
+                  <!-- Heart in right page -->
+                  <path d="M78 46 C77 44 70 38 68 34 C67 30 70 27 73 28 C75 29 76 31 77 32 C78 31 79 29 81 28 C84 27 87 30 86 34 C84 38 77 44 76 46 Z" fill="#ff7661" stroke="#e04832" stroke-width="1.5"/>
+                  <!-- Ribbon bookmark -->
+                  <path d="M55 25 Q58 45 64 65" stroke="#ffb703" stroke-width="3" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <h3 class="card-title">Historias de estudiantes</h3>
+              <p class="card-description">Anécdotas, aprendizajes y momentos inolvidables.</p>
+            </div>
+
+            <div class="card-footer-action">
+              <span class="action-hint">Leer testimonios</span>
+              <span class="card-arrow-pill">→</span>
+            </div>
+          </article>
+
+          <!-- CARD 5: FULL LIDERAZGO -->
+          <article class="sketch-card card-liderazgo" data-card="liderazgo" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Abrir Full liderazgo">
+            <div class="card-art-box">
+              <div class="art-liderazgo">
+                <!-- Megaphone with Sound Sparkles SVG -->
+                <svg viewBox="0 0 110 80" class="megaphone-svg">
+                  <!-- Sound rays -->
+                  <line x1="68" y1="25" x2="82" y2="15" stroke="#ffb703" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="75" y1="40" x2="95" y2="40" stroke="#ff7661" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="68" y1="55" x2="82" y2="65" stroke="#ffb703" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Sparkle Star -->
+                  <polygon points="88,26 90,32 96,33 91,37 92,43 87,40 82,43 84,37 79,33 85,32" fill="#ffd166"/>
+                  <!-- Megaphone Body -->
+                  <path d="M25 35 L45 35 L65 20 L65 60 L45 45 L25 45 Z" fill="#4fa3e3" stroke="#1d5c92" stroke-width="2.5" stroke-linejoin="round"/>
+                  <!-- Handle -->
+                  <path d="M33 45 L33 60 L39 60 L39 45" fill="#f8fafc" stroke="#1d5c92" stroke-width="2.2"/>
+                  <!-- Mouthpiece -->
+                  <ellipse cx="65" cy="40" rx="4" ry="20" fill="#ffffff" stroke="#1d5c92" stroke-width="2.2"/>
+                  <rect x="20" y="36" width="6" height="8" rx="2" fill="#ff7661" stroke="#1d5c92" stroke-width="1.5"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <h3 class="card-title">Full liderazgo</h3>
+              <p class="card-description">Consejos de responsabilidad, iniciativa y trabajo en equipo.</p>
+            </div>
+
+            <div class="card-footer-action">
+              <span class="action-hint">Consejos clave</span>
+              <span class="card-arrow-pill">→</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- FOOTER NOTE -->
+      <footer class="sketch-footer">
+        <div class="footer-handwritten-note">
+          <span class="sketch-dashed-line"></span>
+          <p class="footer-motto">
+            Hecho para acompañarte en tu primer ciclo
+            <span class="footer-heart" aria-label="con amor">❤️</span>
+          </p>
+          <span class="sketch-dashed-line"></span>
+        </div>
+        <p class="footer-meta">
+          Iniciativa de acompañamiento para la comunidad de <strong>Toulouse Lautrec</strong> • Lima, Perú
+        </p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODALS (Using modern HTML5 <dialog> with Light Dismiss)  -->
+  <!-- ======================================================== -->
+
+  <!-- 1. MODAL FORO -->
+  <dialog id="modalForo" class="sketch-dialog" closedby="any" aria-labelledby="modalForoTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-badge badge-yellow">💬 Foro Estudiantil</span>
+          <h2 id="modalForoTitle">¿Qué curso te está gustando más?</h2>
+        </div>
+        <form method="dialog">
+          <button class="dialog-close-btn" aria-label="Cerrar modal">&times;</button>
+        </form>
+      </div>
+
+      <div class="dialog-body">
+        <p class="dialog-intro">
+          Comparte tu experiencia de este primer ciclo. Vota por tu favorito o escribe qué tal te va con tus profes y entregas.
+        </p>
+
+        <!-- Quick Live Poll -->
+        <div class="poll-box">
+          <h4 class="poll-title">📊 Votación rápida Cachimbos:</h4>
+          <div class="poll-options">
+            <button class="poll-btn" data-votes="42">
+              <span class="poll-label">Fundamentos del Diseño</span>
+              <span class="poll-count">42 votos (46%)</span>
+            </button>
+            <button class="poll-btn" data-votes="28">
+              <span class="poll-label">Creatividad y Comunicación</span>
+              <span class="poll-count">28 votos (31%)</span>
+            </button>
+            <button class="poll-btn" data-votes="14">
+              <span class="poll-label">Herramientas Digitales / Mac</span>
+              <span class="poll-count">14 votos (15%)</span>
+            </button>
+            <button class="poll-btn" data-votes="7">
+              <span class="poll-label">Dibujo y Bocetería</span>
+              <span class="poll-count">7 votos (8%)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Community Feed -->
+        <div class="comments-section">
+          <h4 class="comments-title">Comentarios recientes de la comunidad:</h4>
+          
+          <div class="comment-card">
+            <div class="comment-author">
+              <span class="avatar-tag">Valeria M. (Diseño Gráfico)</span>
+              <span class="comment-time">Hace 2 horas</span>
+            </div>
+            <p class="comment-text">"¡Creatividad me encanta! Al principio me costó soltar la mano con las maquetas, pero el profe da buen feedback. ¿Quién más está en el aula 302?"</p>
+            <button class="like-btn" aria-label="Dar me gusta">❤️ <span>19</span></button>
+          </div>
+
+          <div class="comment-card">
+            <div class="comment-author">
+              <span class="avatar-tag">Sebas R. (Animación Digital)</span>
+              <span class="comment-time">Hace 5 horas</span>
+            </div>
+            <p class="comment-text">"Un consejo de oro: no dejen los renders para la noche antes de la entrega. Los laboratorios Mac del campus se llenan rápido a las 5pm."</p>
+            <button class="like-btn" aria-label="Dar me gusta">❤️ <span>34</span></button>
+          </div>
+        </div>
+
+        <!-- New Post Input -->
+        <form class="new-comment-form" id="forumForm">
+          <label for="newCommentInput" class="form-label">Deja tu pregunta o tip para el foro:</label>
+          <div class="form-row">
+            <input type="text" id="newCommentInput" placeholder="Escribe aquí tu duda, recomendación o curso favorito..." required>
+            <button type="submit" class="submit-pill-btn">Publicar ✏️</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="dialog-footer">
+        <form method="dialog">
+          <button class="btn-secondary" type="submit">Cerrar</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 2. MODAL CONOCE TU SEDE -->
+  <dialog id="modalSede" class="sketch-dialog" closedby="any" aria-labelledby="modalSedeTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-badge badge-blue">📍 Ubicación & Campus</span>
+          <h2 id="modalSedeTitle">Conoce tu sede Toulouse</h2>
+        </div>
+        <form method="dialog">
+          <button class="dialog-close-btn" aria-label="Cerrar modal">&times;</button>
+        </form>
+      </div>
+
+      <div class="dialog-body">
+        <!-- Campus Selector Tabs -->
+        <div class="campus-tabs">
+          <button class="campus-tab-btn active" data-campus="jp">Sede Javier Prado (Principal)</button>
+          <button class="campus-tab-btn" data-campus="ch">Sede Chorrillos</button>
+          <button class="campus-tab-btn" data-campus="sm">Sede San Miguel</button>
+        </div>
+
+        <div class="campus-detail-card" id="campusDetail">
+          <div class="campus-info-header">
+            <h3 id="campusName">Sede Javier Prado</h3>
+            <p id="campusAddress" class="campus-address">📍 Av. Javier Prado Oeste 980, Magdalena / San Isidro</p>
+          </div>
+
+          <div class="campus-spots-grid">
+            <div class="spot-item">
+              <span class="spot-icon">☕</span>
+              <div>
+                <strong>Cafetería y Terraza Creativa</strong>
+                <p>Piso 2 • Menús estudiantiles, microondas y café de especialidad.</p>
+              </div>
+            </div>
+            <div class="spot-item">
+              <span class="spot-icon">💻</span>
+              <div>
+                <strong>Laboratorios Mac & Render Farm</strong>
+                <p>Piso 4 • Software Adobe, Maya y Figma listos con tu carnet.</p>
+              </div>
+            </div>
+            <div class="spot-item">
+              <span class="spot-icon">📚</span>
+              <div>
+                <strong>CRAI / Biblioteca & Salas de Estudio</strong>
+                <p>Piso 1 • Libros de diseño, mesas con tomas de luz y préstamo de wacoms.</p>
+              </div>
+            </div>
+            <div class="spot-item">
+              <span class="spot-icon">🛠️</span>
+              <div>
+                <strong>Talleres Maker & Materiales</strong>
+                <p>Sótano 1 • Cortadoras láser, cabina de pintura y herramientas de maquetería.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="campus-tips-box">
+            <strong>💡 Tip de cachimbo:</strong>
+            <span id="campusTip">Los ascensores son concurridos 10 minutos antes de clase; si vas al 2do o 3er piso, las escaleras amarillas son rapidísimas y tienen murales geniales.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn-primary" id="btnCampusMaps" onclick="window.open('https://maps.google.com', '_blank')">Abrir en Google Maps 🗺️</button>
+        <form method="dialog">
+          <button class="btn-secondary" type="submit">Entendido</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 3. MODAL ORGANÍZATE -->
+  <dialog id="modalOrganiza" class="sketch-dialog" closedby="any" aria-labelledby="modalOrganizaTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-badge badge-green">🗓️ Planificación de Primer Ciclo</span>
+          <h2 id="modalOrganizaTitle">Organízate sin estrés</h2>
+        </div>
+        <form method="dialog">
+          <button class="dialog-close-btn" aria-label="Cerrar modal">&times;</button>
+        </form>
+      </div>
+
+      <div class="dialog-body">
+        <p class="dialog-intro">
+          El primer ciclo pasa volando. Aquí tienes tu <strong>Checklist Interactivo del Cachimbo</strong> para marcar lo que ya completaste:
+        </p>
+
+        <!-- Interactive Checklist -->
+        <div class="checklist-card">
+          <div class="checklist-progress">
+            <span class="progress-label">Tu progreso de bienvenida:</span>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="checklistProgress" style="width: 50%;"></div>
+            </div>
+            <span class="progress-percent" id="checklistPercent">50%</span>
+          </div>
+
+          <div class="checklist-items" id="checklistItems">
+            <label class="check-item">
+              <input type="checkbox" checked data-task="1">
+              <span class="checkmark-box"></span>
+              <span class="check-text">Reclamar y activar tu correo institucional @tls.edu.pe</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" checked data-task="2">
+              <span class="checkmark-box"></span>
+              <span class="check-text">Descargar el syllabus de tus cursos y anotar fechas de parciales</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-task="3">
+              <span class="checkmark-box"></span>
+              <span class="check-text">Comprar bitácora creativa (hojas bond sin líneas de 120gr)</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-task="4">
+              <span class="checkmark-box"></span>
+              <span class="check-text">Localizar tu aula y laboratorio para la primera semana</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-task="5">
+              <span class="checkmark-box"></span>
+              <span class="check-text">Crear o unirte al grupo de WhatsApp de tu sección</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="survival-rules-box">
+          <h4>📌 Regla de Oro 48 Horas:</h4>
+          <p>En carreras creativas, los archivos pesan mucho y los programas se cuelgan en el peor momento. Guarda siempre en la nube (Drive institucional ilimitado) y ten un backup en USB.</p>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn-primary" id="btnDownloadPlanner">📥 Descargar Horario Imprimible</button>
+        <form method="dialog">
+          <button class="btn-secondary" type="submit">Listo</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 4. MODAL HISTORIAS -->
+  <dialog id="modalHistorias" class="sketch-dialog" closedby="any" aria-labelledby="modalHistoriasTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-badge badge-purple">📖 Diario & Anécdotas</span>
+          <h2 id="modalHistoriasTitle">Historias de estudiantes que ya pasaron por esto</h2>
+        </div>
+        <form method="dialog">
+          <button class="dialog-close-btn" aria-label="Cerrar modal">&times;</button>
+        </form>
+      </div>
+
+      <div class="dialog-body">
+        <div class="stories-carousel-container">
+          
+          <div class="story-card active" data-story="1">
+            <div class="story-tag">🎨 "Mi primera sustentación con jurado"</div>
+            <p class="story-quote">“Llegué temblando con mi maqueta y pensé que me iban a destruir. Pero los profesores no buscan bajarte el ánimo, buscan enseñarte a justificar cada decisión de diseño. Presenta con pasión y explica el porqué de tus colores.”</p>
+            <div class="story-author-box">
+              <span class="story-avatar">👩‍🎨</span>
+              <div>
+                <strong>Luciana Peña</strong>
+                <p>Dirección y Diseño Gráfico • 5to ciclo</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card" data-story="2">
+            <div class="story-tag">🤝 "Cómo hice a mis mejores amigos el primer día"</div>
+            <p class="story-quote">“No conocía a nadie y me senté atrás con vergüenza. En el descanso alguien preguntó si alguien tenía cinta masking tape... saqué mi cinta, empezamos a hablar y hoy tenemos una agencia creativa juntos en 7mo ciclo.”</p>
+            <div class="story-author-box">
+              <span class="story-avatar">👨‍💻</span>
+              <div>
+                <strong>Matías Córdova</strong>
+                <p>Animación Digital y VFX • 7mo ciclo</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card" data-story="3">
+            <div class="story-tag">💡 "El mito de que no se duerme en diseño"</div>
+            <p class="story-quote">“En el primer ciclo me desvelaba por desordenado. Cuando aprendí a avanzar 1 hora diaria en vez de 10 horas la noche anterior, mis notas subieron y mi salud mental mejoró al 100%.”</p>
+            <div class="story-author-box">
+              <span class="story-avatar">✍️</span>
+              <div>
+                <strong>Camila Torres</strong>
+                <p>Arquitectura de Interiores • 4to ciclo</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-nav-dots">
+            <button class="dot-btn active" data-slide="1" aria-label="Historia 1"></button>
+            <button class="dot-btn" data-slide="2" aria-label="Historia 2"></button>
+            <button class="dot-btn" data-slide="3" aria-label="Historia 3"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn-primary" id="btnNextStory">Siguiente Historia →</button>
+        <form method="dialog">
+          <button class="btn-secondary" type="submit">Cerrar</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 5. MODAL LIDERAZGO -->
+  <dialog id="modalLiderazgo" class="sketch-dialog" closedby="any" aria-labelledby="modalLiderazgoTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-badge badge-coral">📣 Habilidades & Trabajo en Equipo</span>
+          <h2 id="modalLiderazgoTitle">Full Liderazgo Creativo</h2>
+        </div>
+        <form method="dialog">
+          <button class="dialog-close-btn" aria-label="Cerrar modal">&times;</button>
+        </form>
+      </div>
+
+      <div class="dialog-body">
+        <p class="dialog-intro">
+          En el mundo creativo, el talento es solo la mitad; la otra mitad es saber coordinar, escuchar ideas y liderar proyectos colaborativos.
+        </p>
+
+        <div class="leadership-cards">
+          <div class="leader-tip-item">
+            <div class="leader-icon">🤝</div>
+            <div>
+              <strong>1. Dividan por fortalezas</strong>
+              <p>Si uno es bueno bocetando y otro redactando o diagramando, potencien los roles en vez de hacer todo a medias.</p>
+            </div>
+          </div>
+
+          <div class="leader-tip-item">
+            <div class="leader-icon">⏰</div>
+            <div>
+              <strong>2. Pongan fechas límite internas</strong>
+              <p>Si la entrega es el jueves, terminen el borrador el martes para revisar juntos sin apuros.</p>
+            </div>
+          </div>
+
+          <div class="leader-tip-item">
+            <div class="leader-icon">💬</div>
+            <div>
+              <strong>3. Crítica constructiva con empatía</strong>
+              <p>No digas "no me gusta"; di "creo que si aumentamos el contraste se leerá mejor desde lejos".</p>
+            </div>
+          </div>
+
+          <div class="leader-tip-item">
+            <div class="leader-icon">🚀</div>
+            <div>
+              <strong>4. Toma la iniciativa en clase</strong>
+              <p>Preguntar dudas no da vergüenza: los docentes adoran a quienes muestran curiosidad real por aprender.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-banner">
+          <em>“El liderazgo no es mandar; es hacer que las ideas de todos brillen con más fuerza.”</em>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <form method="dialog">
+          <button class="btn-primary" type="submit">¡A romperla en equipo! 🚀</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 6. MODAL BÚSQUEDA RÁPIDA -->
+  <dialog id="modalSearch" class="sketch-dialog" closedby="any" aria-labelledby="modalSearchTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <h2 id="modalSearchTitle">🔍 Buscar en Toulouseando</h2>
+        <form method="dialog">
+          <button class="dialog-close-btn" aria-label="Cerrar modal">&times;</button>
+        </form>
+      </div>
+      <div class="dialog-body">
+        <div class="search-input-wrapper">
+          <input type="text" id="siteSearchInput" placeholder="Escribe un tema: ej. 'wifi', 'cafetería', 'syllabus', 'materiales'..." autofocus>
+        </div>
+        <div class="search-quick-tags">
+          <span class="quick-title">Búsquedas populares de Cachimbos:</span>
+          <div class="tags-row">
+            <button class="tag-chip" data-search="wifi">📶 Red Wi-Fi Alumnos</button>
+            <button class="tag-chip" data-search="horarios">⏰ Horarios de clases</button>
+            <button class="tag-chip" data-search="mac">🖥️ Reservar Salas Mac</button>
+            <button class="tag-chip" data-search="carnet">💳 Carnet de medio pasaje</button>
+            <button class="tag-chip" data-search="materiales">📐 Tiendas de útiles cerca</button>
+          </div>
+        </div>
+        <div class="search-results-list" id="searchResults">
+          <p class="search-placeholder-msg">Haz clic en una sugerencia o escribe tu consulta arriba.</p>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <form method="dialog">
+          <button class="btn-secondary" type="submit">Cerrar</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 7. MODAL PERFIL DEL ESTUDIANTE -->
+  <dialog id="modalProfile" class="sketch-dialog" closedby="any" aria-labelledby="modalProfileTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <h2 id="modalProfileTitle">🎒 Carnet de Cachimbo</h2>
+        <form method="dialog">
+          <button class="dialog-close-btn" aria-label="Cerrar modal">&times;</button>
+        </form>
+      </div>
+      <div class="dialog-body">
+        <div class="id-card-sketch">
+          <div class="id-header">
+            <span class="id-tls">TOULOUSE LAUTREC</span>
+            <span class="id-year">2026-I</span>
+          </div>
+          <div class="id-content">
+            <div class="id-photo">
+              <span>🧑‍🎨</span>
+            </div>
+            <div class="id-details">
+              <h3 class="student-name">Estudiante Creador</h3>
+              <p class="student-code">Código: <strong>202610842</strong></p>
+              <p class="student-career">Carrera: <strong>Diseño y Creatividad</strong></p>
+              <p class="student-status">Estado: <span class="badge-active">Primer Ciclo Activo ✨</span></p>
+            </div>
+          </div>
+          <div class="id-footer">
+            <span class="id-barcode">|||| | ||||| |||| | ||| |||||</span>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <form method="dialog">
+          <button class="btn-primary" type="submit">Guardar carnet</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Notification Toast -->
+  <div class="toast-bubble" id="toastMessage" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
