@@ -102,22 +102,32 @@
         </div>
       </nav>
 
-      <!-- HERO SECTION -->
+      <!-- HERO SECTION (Diseño fiel al boceto interactivo) -->
       <section class="hero-section" id="inicio">
-        <div class="hero-left">
-          
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            <span>¡Bienvenidos Cachimbos 2026! ✏️</span>
-          </div>
+        
+        <!-- Crayon decorative blobs for authentic sketch aesthetic -->
+        <div class="hero-decor-blob blob-yellow" aria-hidden="true"></div>
+        <div class="hero-decor-blob blob-purple" aria-hidden="true"></div>
 
+        <div class="hero-content-left">
+          
           <h1 class="hero-title">
-            <span class="crayon-burst c-left" aria-hidden="true">
-              <svg width="34" height="34" viewBox="0 0 40 40"><line x1="30" y1="30" x2="10" y2="10" stroke="#fec84d" stroke-width="4" stroke-linecap="round"/><line x1="30" y1="20" x2="12" y2="20" stroke="#ff8573" stroke-width="3" stroke-linecap="round"/><line x1="25" y1="35" x2="15" y2="25" stroke="#fec84d" stroke-width="3" stroke-linecap="round"/></svg>
+            <span class="burst-group burst-left" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 40 40">
+                <line x1="32" y1="28" x2="10" y2="8" stroke="#F5A623" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="32" y1="20" x2="6" y2="20" stroke="#4FA3E3" stroke-width="4" stroke-linecap="round"/>
+                <line x1="30" y1="12" x2="12" y2="30" stroke="#FF7563" stroke-width="4.5" stroke-linecap="round"/>
+              </svg>
             </span>
-            ¡Tu vida universitaria empieza aquí!
-            <span class="crayon-burst c-right" aria-hidden="true">
-              <svg width="34" height="34" viewBox="0 0 40 40"><line x1="10" y1="30" x2="30" y2="10" stroke="#ff8573" stroke-width="4" stroke-linecap="round"/><line x1="10" y1="20" x2="28" y2="20" stroke="#fec84d" stroke-width="3" stroke-linecap="round"/><line x1="15" y1="35" x2="25" y2="25" stroke="#ff8573" stroke-width="3" stroke-linecap="round"/></svg>
+            <span class="hero-title-text">
+              ¡Tu vida universitaria<br>empieza aquí!
+            </span>
+            <span class="burst-group burst-right" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 40 40">
+                <line x1="8" y1="28" x2="30" y2="8" stroke="#FF7563" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="8" y1="20" x2="34" y2="20" stroke="#4FA3E3" stroke-width="4" stroke-linecap="round"/>
+                <line x1="10" y1="12" x2="28" y2="30" stroke="#F5A623" stroke-width="4.5" stroke-linecap="round"/>
+              </svg>
             </span>
           </h1>
 
@@ -126,56 +136,20 @@
           </p>
 
           <div class="hero-cta-wrapper">
-            <button class="cta-primary-btn" id="exploreBtn">
-              <span>Explorar la comunidad</span>
-              <svg class="cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </button>
-            <button class="cta-secondary-btn" id="tourQuickBtn">
-              <span>⚡ Guía rápida en 1 min</span>
+            <button class="cta-pill-button" id="exploreBtn" aria-label="Explorar la comunidad">
+              <span class="cta-text">Explorar la comunidad</span>
+              <span class="cta-arrow-icon" aria-hidden="true">→</span>
             </button>
           </div>
 
-          <!-- Quick stats / freshman counter -->
-          <div class="hero-mini-badges">
-            <div class="mini-tag">
-              <span class="tag-icon">🎨</span>
-              <span>Comunidad Creativa</span>
-            </div>
-            <div class="mini-tag">
-              <span class="tag-icon">📍</span>
-              <span>3 Sedes Activas</span>
-            </div>
-            <div class="mini-tag">
-              <span class="tag-icon">💡</span>
-              <span>100% Consejos Reales</span>
-            </div>
+        </div>
+
+        <div class="hero-artwork-right">
+          <div class="sketch-illustration-frame">
+            <img src="assets/hero-sketch-illustration.jpg" alt="Ilustración a lápiz de estudiante con mochila y cuadernos mirando sonriente hacia el campus universitario Toulouse Lautrec" class="sketch-character-img">
           </div>
         </div>
 
-        <div class="hero-right">
-          <div class="hero-illustration-card">
-            <!-- Sketch Paper Frame for Hero Art -->
-            <div class="sketch-pin-tack" aria-hidden="true">📌</div>
-            <img src="assets/hero-student.jpg" alt="Estudiante sonriente con mochila y cuadernos mirando hacia el campus universitario Toulouse Lautrec" class="hero-img">
-            
-            <!-- Interactive Floating Tips -->
-            <div class="floating-sticker sticker-cachimbo">
-              <span class="sticker-emoji">🎒</span>
-              <div class="sticker-info">
-                <strong>¿Primer día?</strong>
-                <p>No olvides tu bitácora</p>
-              </div>
-            </div>
-
-            <div class="floating-sticker sticker-campus">
-              <span class="sticker-emoji">🏢</span>
-              <div class="sticker-info">
-                <strong>Sede Javier Prado</strong>
-                <p>Cafetería en el 2do piso</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- 5 CATEGORY CARDS SECTION -->

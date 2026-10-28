@@ -445,254 +445,186 @@ body {
 }
 
 /* ========================================================
-   HERO SECTION
+   HERO SECTION (Authentic Sketch Prototype Style)
    ======================================================== */
 .hero-section {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1fr 1.05fr;
   align-items: center;
-  gap: 40px;
-  padding: 10px 0 45px;
+  gap: 32px;
+  padding: 10px 0 35px;
+  position: relative;
 }
 
 @media (max-width: 950px) {
   .hero-section {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
   }
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #FFF6D6;
-  border: 1.5px solid #F5DB7E;
-  padding: 5px 14px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-hand);
-  font-size: 1rem;
-  font-weight: 700;
-  color: #8A6400;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.1);
+/* Background Crayon Decorative Blobs */
+.hero-decor-blob {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50% 40% 60% 45%;
+  filter: blur(1px);
 }
 
-.badge-dot {
-  width: 8px;
-  height: 8px;
-  background: #F59E0B;
-  border-radius: 50%;
-  animation: pulseStar 1.5s infinite;
+.blob-yellow {
+  top: -15px;
+  left: -20px;
+  width: 90px;
+  height: 65px;
+  background: #FDE882;
+  opacity: 0.7;
+  transform: rotate(-12deg);
+}
+
+.blob-purple {
+  bottom: 0px;
+  left: -25px;
+  width: 80px;
+  height: 70px;
+  background: #E5DCF8;
+  opacity: 0.65;
+  transform: rotate(18deg);
+}
+
+/* Left Content */
+.hero-content-left {
+  position: relative;
+  z-index: 1;
+  padding-left: 15px;
 }
 
 .hero-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-hand);
-  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  font-size: clamp(2.4rem, 4.3vw, 3.4rem);
   font-weight: 700;
-  color: var(--c-navy);
+  color: #122238;
   line-height: 1.15;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
   margin-bottom: 16px;
   position: relative;
-  display: inline-block;
 }
 
-.crayon-burst {
+.hero-title-text {
   display: inline-block;
-  vertical-align: middle;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.c-left { margin-right: 4px; transform: translateY(-4px); }
-.c-right { margin-left: 4px; transform: translateY(-4px); }
+.burst-group {
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.burst-left {
+  transform: translateY(-8px) rotate(-5deg);
+}
+
+.burst-right {
+  transform: translateY(-8px) rotate(5deg);
+}
+
+.hero-title:hover .burst-left {
+  transform: translateY(-12px) rotate(-12deg) scale(1.1);
+}
+
+.hero-title:hover .burst-right {
+  transform: translateY(-12px) rotate(12deg) scale(1.1);
+}
 
 .hero-description {
-  font-size: 1.2rem;
+  font-family: var(--font-body);
+  font-size: 1.18rem;
   font-weight: 600;
-  color: #4A5568;
-  max-width: 520px;
-  line-height: 1.55;
-  margin-bottom: 28px;
+  color: #435165;
+  line-height: 1.5;
+  max-width: 480px;
+  margin-bottom: 26px;
 }
 
+/* CTA Pill Button (Exact dark navy crayon look from sketch) */
 .hero-cta-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-top: 6px;
 }
 
-.cta-primary-btn {
-  background-color: var(--c-navy);
+.cta-pill-button {
+  background-color: #152542;
   color: #FFFFFF;
   border: none;
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 800;
-  padding: 13px 26px;
-  border-radius: var(--radius-pill);
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 11px 28px;
+  border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: 0 6px 16px rgba(25, 39, 61, 0.22);
+  gap: 12px;
+  box-shadow: 0 8px 20px rgba(21, 37, 66, 0.25), 0 2px 4px rgba(21, 37, 66, 0.15);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  position: relative;
 }
 
-.cta-primary-btn:hover {
-  background-color: var(--c-navy-hover);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 22px rgba(25, 39, 61, 0.28);
+.cta-pill-button:hover {
+  background-color: #0c182d;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 26px rgba(21, 37, 66, 0.32);
 }
 
-.cta-primary-btn:active {
-  transform: translateY(0);
+.cta-pill-button:active {
+  transform: translateY(0) scale(0.99);
 }
 
-.cta-arrow {
+.cta-arrow-icon {
+  font-size: 1.3rem;
   transition: transform 0.2s ease;
 }
 
-.cta-primary-btn:hover .cta-arrow {
-  transform: translateX(5px);
+.cta-pill-button:hover .cta-arrow-icon {
+  transform: translateX(6px);
 }
 
-.cta-secondary-btn {
-  background: #F4EFE6;
-  border: 1.5px solid #DDD4C4;
-  color: #2D3748;
-  font-family: var(--font-body);
-  font-size: 0.98rem;
-  font-weight: 700;
-  padding: 12px 20px;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.cta-secondary-btn:hover {
-  background: #EBE3D3;
-  transform: translateY(-2px);
-}
-
-.hero-mini-badges {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.mini-tag {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E2D9CC;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #4A5568;
-}
-
-/* HERO RIGHT - ARTWORK CARD */
-.hero-right {
+/* Right Artwork Frame */
+.hero-artwork-right {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
-.hero-illustration-card {
+.sketch-illustration-frame {
   position: relative;
-  max-width: 520px;
   width: 100%;
-  background: #FFFFFF;
-  padding: 12px 12px 16px;
-  border-radius: 20px;
-  border: 2px solid #E2DACB;
+  max-width: 580px;
+  border-radius: 18px;
+  overflow: hidden;
   box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.08),
-    0 2px 6px rgba(0, 0, 0, 0.04);
-  transform: rotate(0.8deg);
+    0 14px 34px rgba(30, 41, 59, 0.08),
+    0 2px 6px rgba(30, 41, 59, 0.04);
+  border: 1.5px solid #EAE3D4;
+  background-color: #F8F6EA;
   transition: transform 0.3s ease;
 }
 
-.hero-illustration-card:hover {
-  transform: rotate(0deg) scale(1.01);
+.sketch-illustration-frame:hover {
+  transform: translateY(-4px) scale(1.01);
 }
 
-.sketch-pin-tack {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.4rem;
-  z-index: 2;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
-}
-
-.hero-img {
+.sketch-character-img {
   width: 100%;
   height: auto;
-  border-radius: 14px;
   display: block;
   object-fit: cover;
-  border: 1px solid #EBE4D8;
-}
-
-/* Floating Stickers on Artwork */
-.floating-sticker {
-  position: absolute;
-  background: #FFFFFF;
-  border: 1.5px solid #DDD5C7;
-  padding: 8px 14px;
-  border-radius: 16px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.82rem;
-  z-index: 2;
-  transition: transform 0.2s ease;
-}
-
-.floating-sticker:hover {
-  transform: translateY(-3px) scale(1.05);
-}
-
-.sticker-emoji {
-  font-size: 1.4rem;
-}
-
-.sticker-info strong {
-  display: block;
-  color: #1E293B;
-  font-weight: 800;
-  font-size: 0.85rem;
-}
-
-.sticker-info p {
-  color: #64748B;
-  margin: 0;
-  font-size: 0.78rem;
-}
-
-.sticker-cachimbo {
-  bottom: 24px;
-  left: -18px;
-  transform: rotate(-3deg);
-}
-
-.sticker-campus {
-  top: 24px;
-  right: -16px;
-  transform: rotate(3deg);
-}
-
-@media (max-width: 600px) {
-  .floating-sticker {
-    display: none;
-  }
 }
 
 /* ========================================================
